@@ -1,7 +1,7 @@
 import express from 'express'
 import 'express-async-errors'
 import mongoose from 'mongoose'
-import cors from 'cors'
+// import cors from 'cors'
 import cookieSession from 'cookie-session'
 
 const app = express()
@@ -9,7 +9,7 @@ const port = 4000
 
 app.use(express.json())
 app.set('trust-proxy', false)
-app.use(cors())
+// app.use(cors())
 app.use(cookieSession({
   signed: false,
   secure: false
