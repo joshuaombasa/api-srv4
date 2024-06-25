@@ -12,6 +12,7 @@ signupRouter.post(
   validateRequest,
   async (request: Request, response: Response, next: NextFunction) => {
     const { email, password } = request.body();
+    console.log({ email, password });
 
     response.send({ email, password });
   }
