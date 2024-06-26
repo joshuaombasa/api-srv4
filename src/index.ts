@@ -6,6 +6,7 @@ import cookieSession from 'cookie-session';
 import { signoutRouter } from './routes/signout';
 import { errorHandler } from './middleware/error-handler';
 import { NotFoundError } from './errors/not-found-error';
+import { signinRouter } from './routes/signin';
 
 const app = express();
 const port = 4000;
@@ -21,6 +22,7 @@ app.use(
 );
 
 app.use(signoutRouter);
+app.use(signinRouter)
 
 app.all('*', () => {
   throw new NotFoundError();
