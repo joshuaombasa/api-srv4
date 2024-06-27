@@ -1,4 +1,5 @@
-import express from 'express';
+// import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import mongoose from 'mongoose';
 // import cors from 'cors'
@@ -7,6 +8,7 @@ import { signoutRouter } from './routes/signout';
 import { errorHandler } from './middleware/error-handler';
 import { NotFoundError } from './errors/not-found-error';
 import { signinRouter } from './routes/signin';
+import { signupRouter } from './routes/signup';
 
 const app = express();
 const port = 4000;
@@ -21,6 +23,14 @@ app.use(
   })
 );
 
+// app.post(
+//   '/api/users/signup/',
+//   (request: Request, response: Response, next: NextFunction) => {
+//     response.send({ data: request.body });
+//   }
+// );
+
+app.use(signupRouter)
 app.use(signoutRouter);
 app.use(signinRouter)
 
