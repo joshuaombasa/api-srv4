@@ -4,6 +4,7 @@ import { BadRequestError } from '../errors/bad-request-error';
 import { validateRequest } from '../middleware/validate-request';
 import { User, build } from '../models/user';
 import { Password } from '../services/password';
+
 const signupRouter = express.Router();
 
 signupRouter.post(
@@ -28,7 +29,7 @@ signupRouter.post(
     const userObject = build({ email, password: hashedPassword });
     const savedUser = await userObject.save();
 
-    response.status(200).send(savedUser);
+    response.status(201).send(savedUser);
   }
 );
 
