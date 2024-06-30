@@ -3,6 +3,7 @@ import { body } from 'express-validator';
 import { BadRequestError } from '../errors/bad-request-error';
 import { validateRequest } from '../middleware/validate-request';
 import { User, build } from '../models/user';
+import jwt from 'jsonwebtoken';
 import { Password } from '../services/password';
 
 const signupRouter = express.Router();
@@ -28,6 +29,15 @@ signupRouter.post(
 
     const userObject = build({ email, password: hashedPassword });
     const savedUser = await userObject.save();
+    const userToken = jwt.sign(
+      {
+        email: savedUser.email,
+        id: savedUser.id,
+      },
+      'asdf'
+    );
+
+    request.session = { jwt: userToken };
 
     response.status(201).send(savedUser);
   }
